@@ -293,7 +293,7 @@ export function EditPDFTool({ className = '' }: EditPDFToolProps) {
             <div className="relative border border-[hsl(var(--color-border))] rounded-2xl overflow-hidden bg-[hsl(var(--color-card))] shadow-sm">
               <iframe
                 ref={iframeRef}
-                src={`/direct-pdf-editor/index.html?lang=${encodeURIComponent(locale || 'en')}`}
+                src={`${process.env.NEXT_PUBLIC_BASE_PATH || '/pdfcraft'}/direct-pdf-editor/index.html?lang=${encodeURIComponent(locale || 'en')}`}
                 className="w-full h-[820px] border-0"
                 title="PDF Editor"
                 sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-downloads"
