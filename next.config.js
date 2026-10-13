@@ -34,14 +34,14 @@ const nextConfig = {
   // Enable static export for deployment flexibility
   output: 'export',
   
-  // Support deployment under a subpath (/pdfcraft/)
-  basePath: process.env.BASE_PATH || process.env.NEXT_PUBLIC_BASE_PATH || '/pdfcraft',
-  
-  assetPrefix: process.env.TAURI_ENV ? '/' : undefined,
+  // 強制指定 GitHub Pages 的子路徑
+  basePath: '/pdfcraft',
+  assetPrefix: process.env.TAURI_ENV ? '/' : '/pdfcraft',
 
   env: {
     NEXT_PUBLIC_APP_VERSION: resolveAppVersion(),
     NEXT_PUBLIC_BUILD_DATE: new Date().toISOString(),
+    NEXT_PUBLIC_BASE_PATH: '/pdfcraft', // 讓前端內部的元件也能讀取到正確子路徑
     NEXT_PUBLIC_DISABLE_UPDATE_CHECK:
       process.env.DISABLE_UPDATE_CHECK || process.env.NEXT_PUBLIC_DISABLE_UPDATE_CHECK || 'false',
   },
