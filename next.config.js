@@ -36,14 +36,15 @@ const nextConfig = {
   
   // 強制指定 GitHub Pages 的子路徑
   basePath: '/pdfcraft',
-  assetPrefix: '/pdfcraft/',
+  assetPrefix: '/pdfcraft',
 
   env: {
     NEXT_PUBLIC_APP_VERSION: resolveAppVersion(),
     NEXT_PUBLIC_BUILD_DATE: new Date().toISOString(),
-    // 確保前端元件、Worker 與 iframe 都能讀取到正確子路徑
+    // 確保前端元件、Worker 與 iframe 都能正確讀取到子路徑
     BASE_PATH: '/pdfcraft',
     NEXT_PUBLIC_BASE_PATH: '/pdfcraft',
+    NEXT_PUBLIC_ASSET_PREFIX: '/pdfcraft',
     NEXT_PUBLIC_DISABLE_UPDATE_CHECK:
       process.env.DISABLE_UPDATE_CHECK || process.env.NEXT_PUBLIC_DISABLE_UPDATE_CHECK || 'false',
   },
@@ -111,8 +112,9 @@ const nextConfig = {
     },
   },
 
+  // 強制所有靜態路徑加上結尾斜線，確保 iframe 載入時能正確識別為目錄而不會 404
   trailingSlash: true,
-  reactStrictMode: true,
+  reactStrictMode: false,
 
   typescript: {
     ignoreBuildErrors: false,
